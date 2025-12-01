@@ -5,9 +5,6 @@ from db import AIS, Threat, get_session, init_db
 
 init_db()
 
-# -----------------------------------------
-# U.S. Ports (Coordinates on Land)
-# -----------------------------------------
 
 PORT_LOCATIONS = [
     ("Port of Los Angeles", 33.7361, -118.2625),
@@ -17,10 +14,6 @@ PORT_LOCATIONS = [
     ("Port of Charleston", 32.7816, -79.9225),
     ("Port of Corpus Christi", 27.8080, -97.3950)
 ]
-
-# -----------------------------------------
-# Threat Categories + Types
-# -----------------------------------------
 
 THREAT_TYPES = [
     "ransomware",
@@ -35,16 +28,12 @@ THREAT_TYPES = [
 THREAT_SOURCES = ["OSINT", "CISA", "DARKWEB"]
 
 
-# -----------------------------------------
-# Generate AIS Data
-# -----------------------------------------
-
 def generate_ais_data():
     session = get_session()
 
     print("Generating AIS records (land-based ports)...")
 
-    for _ in range(80):  # Adjustable density
+    for _ in range(80):  
         port_name, lat, lon = random.choice(PORT_LOCATIONS)
 
         jitter_lat = lat + random.uniform(-0.01, 0.01)
@@ -52,7 +41,7 @@ def generate_ais_data():
 
         timestamp = datetime.utcnow() - timedelta(hours=random.randint(0, 72))
 
-        # 15% AIS spoofed or anomalous
+    
         status = random.choices(
             ["normal", "spoofed", "anomaly"],
             weights=[0.85, 0.10, 0.05]
@@ -74,10 +63,6 @@ def generate_ais_data():
     print("Created 80 land-based AIS points.")
 
 
-# -----------------------------------------
-# Generate Threat Intel Data
-# -----------------------------------------
-
 def generate_threats():
     session = get_session()
     print("Generating simulated cyber threat intelligence...")
@@ -87,7 +72,7 @@ def generate_threats():
         "port systems", "GPS spoofing", "navigation", "AIS tampering"
     ]
 
-    for _ in range(40):  # Adjustable volume
+    for _ in range(40):  
         source = random.choice(THREAT_SOURCES)
         type_ = random.choice(THREAT_TYPES)
         term = random.choice(keywords)
@@ -111,10 +96,6 @@ def generate_threats():
 
     print("Created 40 categorized threat intel entries.")
 
-
-# -----------------------------------------
-# Entrypoint
-# -----------------------------------------
 
 if __name__ == "__main__":
     generate_ais_data()
