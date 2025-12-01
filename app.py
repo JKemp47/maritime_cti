@@ -45,14 +45,10 @@ def load_data():
 
 threats, ais = load_data()
 
-# -----------------------------------------------------
-# Combined Histogram
-# -----------------------------------------------------
 import altair as alt
 
 st.header("Threat Distribution by Source and Type")
 
-# Ensure required columns exist
 if "source" in threats.columns and "type" in threats.columns:
     chart = (
         alt.Chart(threats)
@@ -70,16 +66,10 @@ if "source" in threats.columns and "type" in threats.columns:
 else:
     st.warning("The database does not contain both 'source' and 'type' fields.")
 
-# -----------------------------------------------------
-# Threat Feed
-# -----------------------------------------------------
-# ---- Threat Distribution Histogram (Source × Type) ----
 st.header("Threat Feed")
 st.dataframe(threats.sort_values("published", ascending=False))
 
-# -----------------------------------------------------
-# FIXED AIS MAP
-# -----------------------------------------------------
+
 st.header("AIS Map")
 
 layer = pdk.Layer(
