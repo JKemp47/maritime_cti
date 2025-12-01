@@ -1,0 +1,12 @@
+{
+  "gps": "T1623",
+  "spoofing": "T1623",
+  "malware": "T1059",
+  "ransomware": "T1486",
+  "phishing": "T1566",
+  "ais": "T1592",
+  "navigation": "T1592",
+  "zero-day": "T1588",
+  "exploit": "T1203"
+}
+
